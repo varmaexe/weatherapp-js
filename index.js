@@ -85,6 +85,31 @@ function rendWeatherInfo(data){
     const cloudiness = document.querySelector("[data-cloudiness]")
 
     //fetch values from data and put in ui elements
-    
-
+    cityName.innerText = data?.name;
+    countryIcon.src = `https://flagcdn.com/144x108/${data?.sys?.country.toLowerCase()}.png`;
+    desc.innerText = data?.weather?.[0]?.description;
+    weatherIcon.src = `https://openweathermap.org/img/w/${data?.weather?.[0]?.icon}.png`;
+    temp.innerText = data?.main?.temp;
+    windspeed.innerText = data?.wind?.speed;
+    humidity.innerText = data?.main?.humidity;
+    cloudiness.innerText = data?.clouds?.all;
 }
+
+function getlocation(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition)
+    } else {
+        alert("Your browser doesnt support geo location")
+    }
+}
+function showPosition(position){
+    const userCoordinates = {
+        lat: position.coordinates.latitude,
+        lon: position.coordinates.longitude,
+    }
+
+    sessionStorage.setItem("user-cordinates", JSON.stringify(userCoordinates));
+    fetchUserWeatherInfo(userCoordinates)
+}
+const grandAccessbtn = document.querySelector("[data-grandAccess]");
+grandAccessbtn.addEventListener('click', getlocation)
