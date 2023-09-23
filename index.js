@@ -76,7 +76,7 @@ async function fetchUserWeatherInfo(coordinates){
 
 function rendWeatherInfo(data){
     const cityName = document.querySelector("[data-cityName]")
-    const country = document.querySelector("[data-countryIcon]")
+    const countryIcon = document.querySelector("[data-countryIcon]")
     const desc = document.querySelector("[data-weatherDesc]")
     const weatherIcon = document.querySelector("[data-weatherIcon]")
     const temp = document.querySelector("[data-temp]")
@@ -113,3 +113,32 @@ function showPosition(position){
 }
 const grandAccessbtn = document.querySelector("[data-grandAccess]");
 grandAccessbtn.addEventListener('click', getlocation)
+
+const searchInput = document.querySelector("[data-searchInput]");
+searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(searchInput.value === "")
+     return;
+    else
+     fetchUserWeatherInfo(searchInput.value);
+
+})
+
+async function fetchUserWeatherInfo(city) {
+    loadingScreen.classList.add("active");
+    userInfoContainer.classList.remove("active");
+    grantAccessContainer.classList.remove("active");
+
+    try{
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        );
+        const data = await response.json()
+        loadingScreen.classList.remove("active")
+        userInfoContainer.classList.add("active")
+        rendWeatherInfo(data)
+    }
+    catch(err){
+
+    }
+}
