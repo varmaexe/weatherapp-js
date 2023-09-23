@@ -1,0 +1,6 @@
+
+.tab.current-tab{
+    background-color: rgba(131, 131, 131, 0.5);
+    /* background-color: red; */
+    border-radius: 4px;
+}
