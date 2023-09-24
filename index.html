@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -17,9 +20,9 @@
 
         <div class="weather-container">
             <!-- grant location container  -->
-            <div class="grant-location-container">
+            <div class="sub-container grant-location-container">
                 <img src="./assets/location.png" width="80" height="80" loading="lazy">
-                <p>grant location Access</p>
+                <p>Grant Location Access</p>
                 <p>Allow Access to get weather Information</p>
                 <button class="btn" data-grantAccess>Grant Access</button>
             </div>
@@ -27,19 +30,19 @@
             <!-- search form -->
             <form class="form-container" data-searchForm>
                 <input placeholder="Search for City..." data-searchInput>
-                <button class="btn">
+                <button class="btn" type="submit">
                     <img src="./assets/search.png" width="20" height="20" loading="lazy" alt="">
                 </button>
             </form>
 
             <!-- loading screen contianer  -->
-            <div class="loading-container">
+            <div class="sub-container loading-container">
                 <div class="tenor-gif-embed" data-postid="14829442" data-share-method="host" data-aspect-ratio="1" data-width="12%"><a href="https://tenor.com/view/loading-fast-gif-14829442">Loading Fast GIF</a>from <a href="https://tenor.com/search/loading-gifs">Loading GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
             </div>
 
 
             <!-- show weather info  -->
-            <div class="user-info-container">
+            <div class="sub-container user-info-container">
 
                 <!-- city name and flag  -->
                 <div class="name">
@@ -58,19 +61,19 @@
             <div class="parameter-container">
                 <!-- card 1 -->
                 <div class="parameter">
-                    <img src="./assets/wind.png">
+                    <img src="./assets/wind.png" width="80">
                     <p>Windspeed</p>
                     <p data-windspeed></p>
                 </div>
                  <!-- card 2 -->
                  <div class="parameter">
-                    <img src="./assets/humidity.png">
+                    <img src="./assets/humidity.png" width="80">
                     <p>Humidity</p>
                     <p data-humidity></p>
                 </div>
                  <!-- card 3 -->
                  <div class="parameter">
-                    <img src="./assets/cloud.png">
+                    <img src="./assets/clouds.png" width="80">
                     <p>Clouds</p>
                     <p data-cloudiness></p>
                 </div>
