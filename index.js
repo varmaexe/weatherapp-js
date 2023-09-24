@@ -6,6 +6,10 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
+const apiErrorContainer = document.querySelector(".api-error-container");
+const apiErrorImg = document.querySelector("[data-notFoundImg]");
+const apiErrorMessage = document.querySelector("[data-apiErrorText]");
+const apiErrorBtn = document.querySelector("[data-apiErrorBtn]");
 
 //initially vairables need????
 
@@ -15,6 +19,7 @@ currentTab.classList.add("current-tab");
 getfromSessionStorage();
 
 function switchTab(clickedTab) {
+    apiErrorContainer.classList.remove("active");
     if(clickedTab != currentTab) {
         currentTab.classList.remove("current-tab");
         currentTab = clickedTab;
@@ -81,7 +86,11 @@ async function fetchUserWeatherInfo(coordinates) {
     }
     catch(err) {
         loadingScreen.classList.remove("active");
-        //HW
+        apiErrorContainer.classList.add("active");
+    apiErrorImg.style.display = "none";
+    apiErrorMessage.innerText = `Error: ${err?.message}`;
+    apiErrorBtn.addEventListener("click", fetchUserWeatherInfo);
+        
 
     }
 
@@ -119,7 +128,12 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else {
-        //HW - show an alert for no gelolocation support available
+        // console.log("User - Api Fetch Error", error.message);
+        loadingScreen.classList.remove("active");
+        apiErrorContainer.classList.add("active");
+        apiErrorImg.style.display = "none";
+        apiErrorMessage.innerText = `Error: ${error?.message}`;
+        apiErrorBtn.addEventListener("click", fetchUserWeatherInfo);
     }
 }
 
@@ -153,7 +167,7 @@ searchForm.addEventListener("submit", (e) => {
 async function fetchSearchWeatherInfo(city) {
     loadingScreen.classList.add("active");
     userInfoContainer.classList.remove("active");
-    grantAccessContainer.classList.remove("active");
+    apiErrorContainer.classList.remove("active");
 
     try {
         const response = await fetch(
@@ -165,6 +179,10 @@ async function fetchSearchWeatherInfo(city) {
         renderWeatherInfo(data);
     }
     catch(err) {
-        //hW
+        // console.log("Search - Api Fetch Error", error.message);
+         loadingScreen.classList.remove("active");
+        apiErrorContainer.classList.add("active");
+        apiErrorMessage.innerText = `${err?.message}`;
+        apiErrorBtn.style.display = "none";
     }
 }

@@ -227,3 +227,15 @@ h1 {
     border-radius: 100%;
     margin-bottom:1px;
 }
+.api-error-container{
+    display: none;
+}
+.api-error-container.active{
+    display: flex;
+    gap: 1rem;
+}
+.api-error-container img{
+    width: 100%;
+  max-width: 300px;
+  object-fit: cover;
+}
