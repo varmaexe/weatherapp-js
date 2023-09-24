@@ -189,3 +189,4 @@ async function fetchSearchWeatherInfo(city) {
     apiErrorBtn.style.display = "none";
   }
 }
+// done
