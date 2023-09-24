@@ -9,18 +9,16 @@ const userInfoContainer = document.querySelector(".user-info-container");
 
 //initially vairables need????
 
-
 let currentTab = userTab;
-const API_KEY = "you api key"
+const API_KEY = "998834fdc9415cbcf817433207a3f0ff";
 currentTab.classList.add("current-tab");
-
 getfromSessionStorage();
 
-function switchTab(newTab) {
-    if(newTab != oldTab) {
-        oldTab.classList.remove("current-tab");
-        oldTab = newTab;
-        oldTab.classList.add("current-tab");
+function switchTab(clickedTab) {
+    if(clickedTab != currentTab) {
+        currentTab.classList.remove("current-tab");
+        currentTab = clickedTab;
+        currentTab.classList.add("current-tab");
 
         if(!searchForm.classList.contains("active")) {
             //kya search form wala container is invisible, if yes then make it visible
